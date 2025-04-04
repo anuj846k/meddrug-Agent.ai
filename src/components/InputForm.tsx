@@ -5,7 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Search, Flask, Dna, Clipboard, SlidersHorizontal } from 'lucide-react';
+import { 
+  BeakerIcon, 
+  ClipboardCheck, 
+  Activity, 
+  Sliders,
+  Search
+} from 'lucide-react';
 
 interface InputFormProps {
   onSubmit: (data: {
@@ -79,10 +85,10 @@ const InputForm: React.FC<InputFormProps> = ({ onSubmit, formType, isLoading = f
 
   const getFormIcon = () => {
     switch (formType) {
-      case 'generator': return <Flask className="h-5 w-5 text-pharma-600" />;
-      case 'lipinski': return <Clipboard className="h-5 w-5 text-pharma-600" />;
-      case 'binding': return <Dna className="h-5 w-5 text-pharma-600" />;
-      case 'admet': return <SlidersHorizontal className="h-5 w-5 text-pharma-600" />;
+      case 'generator': return <BeakerIcon className="h-5 w-5 text-pharma-600" />;
+      case 'lipinski': return <ClipboardCheck className="h-5 w-5 text-pharma-600" />;
+      case 'binding': return <Activity className="h-5 w-5 text-pharma-600" />;
+      case 'admet': return <Sliders className="h-5 w-5 text-pharma-600" />;
       case 'agent': return <Search className="h-5 w-5 text-pharma-600" />;
       default: return <Search className="h-5 w-5 text-pharma-600" />;
     }

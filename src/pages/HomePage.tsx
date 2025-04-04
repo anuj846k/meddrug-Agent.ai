@@ -1,11 +1,12 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { 
-  Flask, 
-  Clipboard, 
-  Dna, 
-  SlidersHorizontal,
+  BeakerIcon, 
+  ClipboardCheck, 
+  Activity, 
+  Sliders,
   Search,
   ArrowRight
 } from 'lucide-react';
@@ -14,7 +15,7 @@ const HomePage = () => {
   const features = [
     {
       title: 'Molecule Generator',
-      icon: <Flask className="h-6 w-6 text-pharma-600" />,
+      icon: <BeakerIcon className="h-6 w-6 text-pharma-600" />,
       description: 'Generate novel molecular structures with optional seed SMILES.',
       path: '/generator',
       color: 'from-blue-50 to-blue-100',
@@ -22,7 +23,7 @@ const HomePage = () => {
     },
     {
       title: 'Lipinski Rule Validator',
-      icon: <Clipboard className="h-6 w-6 text-pharma-600" />,
+      icon: <ClipboardCheck className="h-6 w-6 text-pharma-600" />,
       description: "Validate drug-likeness using Lipinski's Rule of Five.",
       path: '/lipinski',
       color: 'from-green-50 to-green-100',
@@ -30,7 +31,7 @@ const HomePage = () => {
     },
     {
       title: 'Binding Affinity Predictor',
-      icon: <Dna className="h-6 w-6 text-pharma-600" />,
+      icon: <Activity className="h-6 w-6 text-pharma-600" />,
       description: 'Predict binding affinity to target proteins.',
       path: '/binding',
       color: 'from-purple-50 to-purple-100',
@@ -38,7 +39,7 @@ const HomePage = () => {
     },
     {
       title: 'ADMET Profiler',
-      icon: <SlidersHorizontal className="h-6 w-6 text-pharma-600" />,
+      icon: <Sliders className="h-6 w-6 text-pharma-600" />,
       description: 'Analyze absorption, distribution, metabolism, excretion and toxicity.',
       path: '/admet',
       color: 'from-amber-50 to-amber-100',

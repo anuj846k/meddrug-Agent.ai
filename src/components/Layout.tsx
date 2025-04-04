@@ -3,10 +3,10 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Flask, 
-  Clipboard, 
-  Dna, 
-  SlidersHorizontal, 
+  BeakerIcon, 
+  ClipboardCheck, 
+  Activity, 
+  Sliders, 
   Search, 
   Github 
 } from 'lucide-react';
@@ -20,10 +20,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   
   const navItems = [
     { path: '/', label: 'Home', icon: <Search className="h-4 w-4 mr-2" /> },
-    { path: '/generator', label: 'Generator', icon: <Flask className="h-4 w-4 mr-2" /> },
-    { path: '/lipinski', label: 'Lipinski', icon: <Clipboard className="h-4 w-4 mr-2" /> },
-    { path: '/binding', label: 'Binding', icon: <Dna className="h-4 w-4 mr-2" /> },
-    { path: '/admet', label: 'ADMET', icon: <SlidersHorizontal className="h-4 w-4 mr-2" /> },
+    { path: '/generator', label: 'Generator', icon: <BeakerIcon className="h-4 w-4 mr-2" /> },
+    { path: '/lipinski', label: 'Lipinski', icon: <ClipboardCheck className="h-4 w-4 mr-2" /> },
+    { path: '/binding', label: 'Binding', icon: <Activity className="h-4 w-4 mr-2" /> },
+    { path: '/admet', label: 'ADMET', icon: <Sliders className="h-4 w-4 mr-2" /> },
   ];
 
   return (
@@ -34,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-3">
               <div className="bg-pharma-600 text-white p-1.5 rounded-md">
-                <Flask className="h-5 w-5" />
+                <BeakerIcon className="h-5 w-5" />
               </div>
               <span className="text-xl font-semibold text-pharma-800">MedDrug Agent</span>
             </Link>

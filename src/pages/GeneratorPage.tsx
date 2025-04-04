@@ -5,20 +5,18 @@ import InputForm from '../components/InputForm';
 import MoleculeCard from '../components/MoleculeCard';
 import MedDrugService from '../api/apiService';
 import { useNavigate } from 'react-router-dom';
+import { BeakerIcon } from 'lucide-react';
 
 const GeneratorPage = () => {
   const [molecules, setMolecules] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleGenerateSubmit = async (data: {
-    numSamples: number;
-    seedSmiles?: string;
-  }) => {
+  const handleGenerateSubmit = async (data: any) => {
     try {
       setIsLoading(true);
       const result = await MedDrugService.generateMolecules(
-        data.numSamples,
+        data.numSamples || 5,
         data.seedSmiles
       );
       
@@ -90,7 +88,7 @@ const GeneratorPage = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-64 text-center bg-white bg-opacity-70 rounded-lg border border-gray-200 p-8">
-              <Flask className="h-12 w-12 text-gray-400 mb-4" />
+              <BeakerIcon className="h-12 w-12 text-gray-400 mb-4" />
               <h3 className="text-xl font-semibold text-gray-600 mb-2">No Molecules Generated Yet</h3>
               <p className="text-gray-500 max-w-md">
                 Use the form to generate AI-created molecules. You can optionally provide a seed SMILES to create similar structures.

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,7 @@ const HomePage = () => {
     {
       title: 'Lipinski Rule Validator',
       icon: <Clipboard className="h-6 w-6 text-pharma-600" />,
-      description: 'Validate drug-likeness using Lipinski's Rule of Five.',
+      description: "Validate drug-likeness using Lipinski's Rule of Five.",
       path: '/lipinski',
       color: 'from-green-50 to-green-100',
       textColor: 'text-green-700'

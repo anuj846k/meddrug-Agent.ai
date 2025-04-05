@@ -73,7 +73,7 @@ const GeneratorPage = () => {
           ) : molecules.length > 0 ? (
             <div>
               <h2 className="text-xl font-semibold mb-4 text-pharma-700">
-                Generated Molecules ({molecules.length})
+                Molecules Generated ({molecules.length})
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {molecules.map((smiles, index) => (

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { CheckCircle, XCircle, AlertCircle, InfoIcon } from 'lucide-react';
@@ -126,7 +125,8 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, data, onClose }) => {
         <div className="text-center mb-2">
           <h3 className="font-semibold mb-1">Binding Affinity to {data.target}</h3>
           <div className="text-3xl font-bold text-pharma-700">
-            {(score * 100).toFixed(1)}%
+            {/* {(score * 100).toFixed(1)}% */}
+            {score}
           </div>
         </div>
         
@@ -189,6 +189,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, data, onClose }) => {
   }) => {
     const isValid = name === 'LogP' ? value <= limit : name === 'Molecular Weight' ? value <= limit : value <= limit;
     
+    // Add null check and default value
+    const displayValue = typeof value === 'number' ? value.toFixed(1) : '0.0';
+    
     return (
       <TooltipProvider>
         <Tooltip>
@@ -198,7 +201,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, data, onClose }) => {
                 <div>
                   <p className="text-sm font-medium">{name}</p>
                   <p className="text-xl font-bold">
-                    {value.toFixed(1)}{unit && unit}
+                    {displayValue}{unit && unit}
                   </p>
                 </div>
                 {isValid ? (

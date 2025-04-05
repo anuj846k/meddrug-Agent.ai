@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { useLocation } from 'react-router-dom';
@@ -6,6 +5,9 @@ import InputForm from '../components/InputForm';
 import AnalysisDashboard from '../components/AnalysisDashboard';
 import MedDrugService from '../api/apiService';
 import { Brain } from 'lucide-react';
+
+// Import the AgentAnalysisResponse type from InputForm
+import { AgentAnalysisResponse } from '../components/InputForm';
 
 // Define types for the full analysis result
 interface LipinskiResult {
@@ -45,7 +47,7 @@ interface FullAnalysisResult {
 }
 
 const Index = () => {
-  const [result, setResult] = useState<FullAnalysisResult | null>(null);
+  const [result, setResult] = useState<AgentAnalysisResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isAgentLoading, setIsAgentLoading] = useState(false);
   const location = useLocation();
@@ -54,46 +56,38 @@ const Index = () => {
   useEffect(() => {
     const state = location.state as { smiles?: string } | null;
     if (state?.smiles) {
-      // Pre-fill the form and reset the state
-      // In a real app, you would update a form ref or state here
       console.log('SMILES received from navigation:', state.smiles);
-      // Reset the location state
       window.history.replaceState({}, document.title);
     }
   }, [location]);
 
-  const handleAnalysisSubmit = async (data: { 
-    smiles: string; 
-    target: string;
-    modelType: string;
+  const handleAnalysisSubmit = async (data: {
+    smiles: string;
+    target?: string;
+    modelType?: string;
+    numSamples?: number;
     question?: string;
+    analysisResult?: AgentAnalysisResponse;
   }) => {
     try {
       setIsLoading(true);
+      
+      // If we already have the analysis result from the form
+      if (data.analysisResult) {
+        setResult(data.analysisResult);
+        toast.success('Analysis completed successfully');
+        return;
+      }
+
+      // Otherwise, perform the analysis (this is a fallback and might not be needed)
       const analysisResult = await MedDrugService.getFullAnalysis(
         data.smiles,
-        data.target,
-        data.modelType,
+        data.target!,
+        data.modelType!,
         data.question
       );
       
-      // Format the result to match our expected structure
-      const formattedResult: FullAnalysisResult = {
-        smiles: data.smiles,
-        lipinski: analysisResult.lipinski || {
-          mw: 0, logp: 0, hbd: 0, hba: 0, is_valid: false
-        },
-        binding: {
-          binding_score: analysisResult.binding?.score || 0,
-          target: data.target
-        },
-        admet: analysisResult.admet || {
-          absorption: [], distribution: [], metabolism: [], excretion: [], toxicity: []
-        },
-        agent_response: analysisResult.agent_response || "Analysis complete. This molecule has been evaluated for drug-likeness, binding affinity, and ADMET properties."
-      };
-      
-      setResult(formattedResult);
+      setResult(analysisResult);
       toast.success('Analysis completed successfully');
     } catch (error) {
       console.error('Failed to perform full analysis:', error);
@@ -111,18 +105,18 @@ const Index = () => {
       
       // Call the agent endpoint with the current SMILES and the new question
       const response = await MedDrugService.getFullAnalysis(
-        result.smiles,
-        result.binding.target,
-        'CNN', // Using default model type
+        result.drug_smiles,
+        result.target_sequence,
+        'CNN',
         question
       );
       
-      // Update only the agent response portion of the result
-      setResult((prev) => {
+      // Update the result with the new AI analysis
+      setResult(prev => {
         if (!prev) return null;
         return {
           ...prev,
-          agent_response: response.agent_response || "The agent couldn't generate a response to your question."
+          ai_analysis: response.ai_analysis
         };
       });
       
@@ -165,7 +159,22 @@ const Index = () => {
             </div>
           ) : result ? (
             <AnalysisDashboard 
-              data={result} 
+              data={{
+                smiles: result.drug_smiles,
+                lipinski: {
+                  mw: result.drug_likeness.molecular_weight,
+                  logp: result.drug_likeness.logP,
+                  hbd: result.drug_likeness.HBD,
+                  hba: result.drug_likeness.HBA,
+                  is_valid: result.drug_likeness.drug_likeness === "Pass"
+                },
+                binding: {
+                  binding_score: result.binding_score,
+                  target: result.target_sequence
+                },
+                admet: result.admet,
+                agent_response: result.ai_analysis?.analysis || result.message
+              }}
               onAskQuestion={handleAskQuestion}
               isAgentLoading={isAgentLoading}
             />

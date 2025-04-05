@@ -40,13 +40,13 @@ const AgentResponse: React.FC<AgentResponseProps> = ({
 
   return (
     <Card className="shadow-md border-pharma-100 overflow-hidden">
-      <CardHeader className="bg-gradient-to-r from-pharma-700 to-pharma-900 text-white pb-3">
+      {/* <CardHeader className="bg-gradient-to-r from-pharma-700 to-pharma-900 text-white pb-3">
         <CardTitle className="text-lg flex items-center gap-2">
           <Brain className="h-5 w-5" />
           AI Drug Analysis Assistant
         </CardTitle>
-      </CardHeader>
-      
+      </CardHeader> */}
+{/*       
       <CardContent className="p-4">
         <div className="flex items-start gap-3 mb-4">
           <div className="bg-pharma-100 p-2 rounded-full">
@@ -66,8 +66,8 @@ const AgentResponse: React.FC<AgentResponseProps> = ({
             )}
           </div>
         </div>
-      </CardContent>
-
+      </CardContent> */}
+{/* 
       <CardFooter className="border-t p-3">
         <form onSubmit={handleSubmit} className="w-full flex gap-2">
           <div className="flex-1">
@@ -88,7 +88,7 @@ const AgentResponse: React.FC<AgentResponseProps> = ({
             <Send className="h-4 w-4" />
           </Button>
         </form>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

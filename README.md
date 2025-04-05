@@ -9,7 +9,7 @@ MedDrug Insight UI is a unified drug analysis platform powered by Agent AI. It h
 
 ***DATASETS USED:***
 
-🧬 *TamGen* – Generates new drug molecules based on AI training from millions of known compounds.  
+🧬 *PubChem* – Generates new drug molecules based on AI training from millions of known compounds.  
 🛠 *DeepPurpose* – Checks how well a drug binds to a target protein (key to effectiveness).  
 🧠 *chemBERTa* – Creates a "map" of drug molecules to find similar ones.
 

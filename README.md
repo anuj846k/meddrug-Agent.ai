@@ -1,11 +1,11 @@
-# 🧠 MedDrug Insight UI — Simplifying Drug Discovery with AI
+# 🧠 MedDrug Agent — Simplifying Drug Discovery with AI
 
 ![](https://i.imgur.com/aACqD8s.png)
 
 
 Finding new medicines is a slow and expensive process, often taking over 20 years and costing billions of dollars. Scientists use trial-and-error methods that aren’t efficient. AI and computers can help speed up this process by predicting useful drug compounds before physical testing. However, most AI models work separately, making it hard to use them together.  
 
-MedDrug Insight UI is a unified drug analysis platform powered by Agent AI. It helps researchers and drug developers by transforming complex data into actionable insights — fast, safely, and intelligently.
+MedDrug Agent is a unified drug analysis platform powered by Agent AI. It helps researchers and drug developers by transforming complex data into actionable insights — fast, safely, and intelligently.
 
 ***DATASETS USED:***
 

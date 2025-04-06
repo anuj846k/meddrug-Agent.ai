@@ -176,3 +176,8 @@ return {
 - AI-ready format with SMILES, protein, ADMET, and more
 
 Backend Repository Link : https://github.com/kshitijakarsh/backendDrug
+
+Contributors: 
+
+[Anubhav Singh]((https://github.com/AnubhavSingh99)
+[Kshitij Akarsb]((https://github.com/kshitijakarsh)
